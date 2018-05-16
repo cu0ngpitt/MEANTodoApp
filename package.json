@@ -1,0 +1,11 @@
+{
+  "name": "meantodoapp",
+  "version": "1.0.0",
+  "description": "To do list app with user login and registration",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cuong Vo",
+  "license": "ISC"
+}
