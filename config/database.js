@@ -1,4 +1,4 @@
 module.exports = {
-  database: 'monogdb://localhost:27017/MEANTodoApp',
+  database: 'mongodb://localhost:27017/MEANTodoApp',
   secret: 'tokensecret'
 }
