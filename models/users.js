@@ -4,8 +4,10 @@ const config = require('../config/database');
 
 //user schema
 const UserSchema = mongoose.Schema({
+  //_id: {    type: String  },
   name: {
-    type: String },
+    type: String
+  },
   email: {
     type: String,
     required: true
@@ -39,4 +41,11 @@ module.exports.addUser = function(newUser, callback) {
         newUser.save(callback);
     });
 });
+}
+
+module.exports.comparePassword = function(candidatePassword, hash, callback){
+  bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
+    if(err) throw err;
+    callback(null, isMatch);
+  });
 }
