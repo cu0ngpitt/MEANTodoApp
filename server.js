@@ -12,7 +12,6 @@ const config = require('./config/database');
 
 
 const users = require('./routes/users');      //loads our custom router module/middleware to our app
-app.use('/users', users);                     //mounts our router with a base address of localhost:"our port #"/users
 
 const port = 3000;                            //sets our local port to 3000
 
@@ -26,14 +25,16 @@ mongoose.connection.on('error', (err) => {
 });
 
 //configuration ===================
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors());                              //mounts cors and **MUST be placed before any other routes**
+app.use(bodyParser.json());                   //MUST be mounted before ANY routes so the server can pull html from POST
 
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use(express.static(path.join(__dirname, 'public')));      // set the static files location
+
+app.use('/users', users);                     //mounts our router with a base address of localhost:"our port #"/users
 
 app.get('/', (req, res) => {
   res.send('hello world');
