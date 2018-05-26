@@ -36,9 +36,14 @@ app.use(express.static(path.join(__dirname, 'public')));      // set the static 
 
 app.use('/users', users);                     //mounts our router with a base address of localhost:"our port #"/users
 
+//Index route
 app.get('/', (req, res) => {
   res.send('hello world');
 });
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+})
 
 //listen for connections on our designated port (start app with node server.js) ===========
 app.listen(port, () => {
