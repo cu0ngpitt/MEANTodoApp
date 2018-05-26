@@ -8,7 +8,8 @@ const User = require('../models/users');
 //registrate
 router.post('/register', (req, res, next) => {
   let newUser = new User({
-    name: req.body.name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password
@@ -26,7 +27,7 @@ router.post('/register', (req, res, next) => {
 //authenticate
 router.post('/authenticate', (req, res, next) => {
   const username = req.body.username;
-  const password = req.body.password;  
+  const password = req.body.password;
 
   User.getUserByUsername(username, (err, user) => {
     if(err) throw err;
