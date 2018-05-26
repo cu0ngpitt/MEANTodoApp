@@ -4,8 +4,10 @@ const config = require('../config/database');
 
 //user schema
 const UserSchema = mongoose.Schema({
-  //_id: {    type: String  },
-  name: {
+  firstName: {
+    type: String
+  },
+  lastName: {
     type: String
   },
   email: {
