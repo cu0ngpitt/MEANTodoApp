@@ -1,3 +1,34 @@
-<p>
-  dashboard works!
-</p>
+<section class="newList" *ngIf="user">
+  <h1>{{user.firstName}} {{user.lastName}}'s To Do List</h1>
+
+  <div class="add">
+    <input class="newItem" #newListInput type="text" [(ngModel)]="input" placeholder="Enter new items here">
+    <!-- (click) passes input value to addList() and then clears the input -->
+    <button id="addListButton" (click)="addList(newListInput.value); newListInput.value=''">Add</button>
+  </div>
+
+  <div class="lists">
+    <ul id="dispList">
+      <li *ngFor="let list of lists" [class.completed]="list.completed" class="list-lines">
+        <tr>
+          <td class="check">
+            <input id='checked' type='checkbox' (click)='isChecked(list)'>
+          </td>
+          <td class="todo">
+            <p>{{list.item}}</p>
+          </td>
+        </tr>
+      </li>
+    </ul>
+  </div>
+
+  <div class="delete">
+    <p>To delete an item:</p>
+      <ol>
+        <li>First select the item</li>
+        <li>Then click the Delete button below</li>
+      </ol>
+    <button id="delButton" (click)="delList(listService)" (update)=delList($event)>Delete</button>
+  </div>
+
+</section>
