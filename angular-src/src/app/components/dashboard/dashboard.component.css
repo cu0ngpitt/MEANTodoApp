@@ -1,0 +1,18 @@
+.newList {
+    min-width: 550px;
+    width: 600px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+.todo {
+  padding: 12px 0 0 10px;
+}
+
+.list-lines {
+  height: 30px;
+}
+
+#dispList {
+  list-style-type: none;
+}
