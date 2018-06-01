@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';     //remove this later after updating the old code============
+import { HttpClientModule } from '@angular/common/http';
+
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -16,6 +18,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { ListService } from './services/list.service';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -38,11 +41,12 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpModule,       //remove this later after updating the old code=======================
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot()
   ],
-  providers: [ValidateService, AuthService, AuthGuard],
+  providers: [ValidateService, AuthService, AuthGuard, ListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
