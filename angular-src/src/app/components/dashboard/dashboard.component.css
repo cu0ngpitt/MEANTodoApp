@@ -5,6 +5,10 @@
     padding: 0 30px;
   }
 
+.lists {
+  min-height: 300px;
+}
+
 .todo {
   padding: 12px 0 0 10px;
   color: black;
@@ -22,3 +26,26 @@
     text-decoration: line-through;
     color: red;
   }
+
+h1 {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.newItem {
+  padding-left: 20px;
+  width: 400px;
+  height: 25px;
+}
+
+.delete {
+  padding-top: 20px;
+  padding-left: 60px;
+  border-top: 1px solid #bfbfbf;
+}
+
+.add{
+  text-align: center;
+  border-bottom: 1px solid #bfbfbf;
+  padding-bottom: 20px;
+}

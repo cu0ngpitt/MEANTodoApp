@@ -11,7 +11,8 @@ const mongoose = require('mongoose');         //mongoose for mongodb
 const config = require('./config/database');
 
 
-const users = require('./routes/users');      //loads our custom router module/middleware to our app
+const users = require('./routes/users');      //loads our custom user router module/middleware to our app
+const todoList = require('./routes/list');    //loads our custom list router module/middleware to our app
 
 const port = 3000;                            //sets our local port to 3000
 
@@ -35,6 +36,7 @@ require('./config/passport')(passport);
 app.use(express.static(path.join(__dirname, 'public')));      // set the static files location
 
 app.use('/users', users);                     //mounts our router with a base address of localhost:"our port #"/users
+app.use('/todos', todoList);                  //mounts our router to allow access to the todos link
 
 //Index route
 app.get('/', (req, res) => {
@@ -45,7 +47,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 })
 
-//listen for connections on our designated port (start app with node server.js) ===========
+//allows the server to start and listen for connections on our designated port (start app with node server.js) ===========
 app.listen(port, () => {
   console.log('Server started on port ' + port);
 });
