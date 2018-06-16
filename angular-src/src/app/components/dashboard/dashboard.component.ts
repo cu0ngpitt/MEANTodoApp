@@ -5,17 +5,21 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { ListService } from '../../services/list.service';
 //import { List } from '../../list';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user: Object;
+  user: any;
+  username: any;
+  userId: string;
 
   lists: any;
 
   @Input() input;
+
 
   constructor(
     private authService: AuthService,
@@ -24,10 +28,10 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getLists();
-
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
+      this.username = profile.user.username;
+      this.getLists();
     },
     err => {
       console.log(err);
@@ -35,38 +39,45 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+
   getLists(): void {
-    this.listService.getAllTodos()
-      .subscribe((data: any) => this.lists = data.todos);
+    const username = { username: this.username };
+    this.listService.getAllTodos(username).subscribe((data: any) => {
+      this.lists = data.data.todos;
+      this.userId = data.data._id;
+      console.log(this.lists);
+    });
   }
 
   addList(newItem): void {
-    const newTodo = { item: newItem, completed: false };
+    const newTodo = { username: this.user.username, todos: [{item: newItem, completed: false}] };
 
     if (newItem !== '')
       this.listService.addItem(newTodo).subscribe(data => {
           this.lists.push(data);
           this.getLists();
       });
-    console.log(this.lists);
   }
 
   isChecked(list) {
+    const info = {userId: this.userId, list: [list]}
     if(list.completed === false) {
-      this.listService.markCompleted(list).subscribe((data: any) => {
+      this.listService.markCompleted(info).subscribe((data: any) => {
         this.lists = data.todos;
         this.getLists();
+        console.log(this.lists);
         });
     } else if (list.completed === true) {
-      this.listService.markNotCompleted(list).subscribe((data: any) => {
+      this.listService.markNotCompleted(info).subscribe((data: any) => {
         this.lists = data.todos;
         this.getLists();
       });
     }
   }
 
-  delList(list) {
-    this.listService.deleteCompleted(list).subscribe((data: any) => {
+  delList() {
+    const info = {userId: this.userId, list: [this.lists]}
+    this.listService.deleteCompleted(info).subscribe((data: any) => {
       this.lists = data.todos;
       this.getLists();
     });
