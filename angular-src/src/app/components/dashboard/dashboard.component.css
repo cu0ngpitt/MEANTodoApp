@@ -1,5 +1,5 @@
 .username {
-  
+
 }
 
 .newList {
@@ -39,7 +39,7 @@ h1 {
 .newItem {
   padding-left: 20px;
   width: 400px;
-  height: 25px;
+  display: inline-block;
 }
 
 .delete {
@@ -52,4 +52,8 @@ h1 {
   text-align: center;
   border-bottom: 1px solid #bfbfbf;
   padding-bottom: 20px;
+}
+
+#addListButton {
+  margin-bottom: 9px;
 }
