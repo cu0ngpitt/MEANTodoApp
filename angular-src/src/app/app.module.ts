@@ -21,11 +21,12 @@ import { AuthGuard } from './guards/auth.guard';
 import { ListService } from './services/list.service';
 
 const appRoutes: Routes = [
-  {path:'', component: HomeComponent},
-  {path:'register', component: RegisterComponent},
-  {path:'login', component: LoginComponent},
-  {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
-  {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path:'register', component: RegisterComponent },
+  { path:'login', component: LoginComponent },
+  { path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
+  { path:'profile', component: ProfileComponent, canActivate:[AuthGuard] },
 ]
 
 @NgModule({
