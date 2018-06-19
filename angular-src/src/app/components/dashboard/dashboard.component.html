@@ -1,15 +1,15 @@
 <section class="newList" *ngIf="user">
-  <h1>{{user.firstName}} {{user.lastName}}'s To Do List</h1>
+  <h1>{{user.firstName | titlecase}} {{user.lastName | titlecase}}'s To Do List</h1>
 
   <div class="add">
-    <input class="newItem" #newListInput type="text" [(ngModel)]="input"
+    <input class="newItem form-control form-control-lg" #newListInput type="text" [(ngModel)]="input"
       placeholder="Enter new items here" (keyup.enter)="addList(newListInput.value); newListInput.value=''">
     <!-- (click) passes input value to addList() and then clears the input -->
-    <button id="addListButton" (click)="addList(newListInput.value); newListInput.value=''">Add</button>
+    <button id="addListButton" class="btn btn-primary btn-lg" (click)="addList(newListInput.value); newListInput.value=''">Add</button>
   </div>
 
-  <div class="lists">
-    <ul id="dispList">
+  <div class="lists blockquote">
+    <ul class="mb-0" id="dispList">
       <li *ngFor="let list of lists" [class.completed]="list.completed" class="list-lines">
         <tr>
           <td class="check">
@@ -24,13 +24,13 @@
     </ul>
   </div>
 
-  <div class="delete">
-    <p>To delete an item:</p>
+  <div class="delete blockquote">
+    <p class="mb-0">To delete an item:</p>
       <ol>
         <li>First mark the item as completed</li>
         <li>Then click the Delete button below</li>
       </ol>
-    <button id="delButton" (click)="delList(listService)">Delete</button>
+    <button id="delButton" class="btn btn-primary btn-lg" (click)="delList(list)">Delete</button>
   </div>
 
 </section>
