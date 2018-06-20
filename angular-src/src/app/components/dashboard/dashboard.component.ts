@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ListService } from '../../services/list.service';
-//import { List } from '../../list';
+import { List } from '../../list';
 
 
 @Component({
@@ -16,9 +16,9 @@ export class DashboardComponent implements OnInit {
   username: any;
   userId: string;
 
-  lists: any;
+  lists: any = [];
 
-  @Input() input;
+  //@Input() property: lists = [];
 
 
   constructor(
@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //console.log('Init', this.property);
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
       this.username = profile.user.username;
@@ -43,9 +44,13 @@ export class DashboardComponent implements OnInit {
   getLists(): void {
     const username = { username: this.username };
     this.listService.getAllTodos(username).subscribe((data: any) => {
-      this.lists = data.data.todos;
+      this.lists = data.data.todos;  //========= need to fix this error, cannot read property todo of undefined
       this.userId = data.data._id;
       console.log(this.lists);
+    },
+    err => {
+      console.log(err);
+      return false;
     });
   }
 
@@ -53,7 +58,7 @@ export class DashboardComponent implements OnInit {
     const newTodo = { username: this.user.username, todos: [{item: newItem, completed: false}] };
 
     if (newItem !== '')
-      this.listService.addItem(newTodo).subscribe(data => {
+      this.listService.addItem(newTodo).subscribe((data: any) => {
           this.lists.push(data);
           this.getLists();
       });
@@ -65,7 +70,6 @@ export class DashboardComponent implements OnInit {
       this.listService.markCompleted(info).subscribe((data: any) => {
         this.lists = data.todos;
         this.getLists();
-        console.log(this.lists);
         });
     } else if (list.completed === true) {
       this.listService.markNotCompleted(info).subscribe((data: any) => {
