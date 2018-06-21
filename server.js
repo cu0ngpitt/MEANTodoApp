@@ -14,7 +14,7 @@ const config = require('./config/database');
 const users = require('./routes/users');      //loads our custom user router module/middleware to our app
 const todoList = require('./routes/list');    //loads our custom list router module/middleware to our app
 
-const port = 3000;                            //sets our local port to 3000
+const port = process.evn.PORT || 8080;        //local port configured for heroku
 
 mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {

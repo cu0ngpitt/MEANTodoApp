@@ -4,41 +4,43 @@
 
   <form (submit)="onRegisterSubmit()">
     <div class="form-group">
-      <div class="form-group has-danger">
+      <div class="form-group">
         <label class="col-form-label col-form-label-lg" for="inputLarge">First Name</label>
-        <input class="form-control form-control-lg" type="text" id="inputLarge" [(ngModel)]="firstName" name="firstName">
+        <input class="form-control form-control-lg" type="text" [(ngModel)]="firstName" name="firstName" required>
       </div>
 
-      <div class="form-group has-danger">
+      <div class="form-group">
         <label class="col-form-label col-form-label-lg" for="inputLarge">Last Name</label>
-        <input class="form-control form-control-lg" type="text" id="inputLarge" [(ngModel)]="lastName" name="lastName">
+        <input class="form-control form-control-lg" type="text" [(ngModel)]="lastName" name="lastName" required>
       </div>
 
-      <div class="form-group has-danger">
+      <div class="form-group">
         <label class="col-form-label col-form-label-lg" for="inputLarge">Email</label>
-        <input class="form-control form-control-lg" type="text" id="inputLarge" [(ngModel)]="email" name="email">
+        <input class="form-control form-control-lg" type="email" [(ngModel)]="email" name="email" required>
       </div>
 
-      <div class="form-group has-danger">
+      <div class="form-group">
         <label class="col-form-label col-form-label-lg" for="inputLarge">Username</label>
-        <input class="form-control form-control-lg" type="text" id="inputLarge" [(ngModel)]="username" name="username">
+        <input class="form-control form-control-lg" type="text" [(ngModel)]="username" name="username" required>
       </div>
 
-      <div class="form-group has-danger">
+      <div class="form-group">
         <label class="col-form-label col-form-label-lg" for="inputLarge">Password</label>
-        <input class="form-control form-control-lg" type="text" id="inputLarge" [(ngModel)]="password" name="password">
+        <input class="form-control form-control-lg" [type]="passwordType" [(ngModel)]="password" name="password" required>
+      </div>
+
+      <div class="form-check my-2">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" (click)="showPassword()">
+          Show Password
+        </label>
       </div>
 
       <div class="buttonHolder">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
       </div>
 
-      <br><br><br>
-      <div class="form-group has-danger">
-        <label class="form-control-label" for="inputDanger1">Invalid input</label>
-        <input type="text" value="wrong value" class="form-control is-invalid" id="inputInvalid">
-        <div class="invalid-feedback">Sorry, that username's taken. Try another?</div>
-      </div>
+
     </div>
   </form>
 
