@@ -4,44 +4,71 @@ const config = require('../config/database');
 const List = require('../models/list');
 
 
-//get all items in to do list
-router.get('/lists', (req, res, next) => {
-  List.getLists((err, todos) => {
-    if(err) {
-      res.json({success: false, msg: 'No list found'});
+//get all items in the to do list
+router.post('/lists', (req, res, next) => {
+  const username = req.body.username;
+  List.getListByUsername(username, (err, user) => {
+    if (err) throw err;
+    if (!user) {
+      res.json({ success: false, msg: 'No list found for this user', data: { todos: [] }
+    });
     } else {
-      res.json({
-        success: true,
-        todos
+      List.getLists(username, (err, data) => {
+        if(err) {
+          res.json({ success: false, msg: 'No list found', data: { todos: [] }
+        });
+        } else {
+          res.json({ success: true, msg: 'Success! List has been sent', data });
+        }
       });
     }
-  });
+  })
 });
 
 //add new item
 router.post('/add', (req, res, next) => {
   const username = req.body.username;
-  const name = "''" + username + "''";
-  console.log(name);
-  const newItem = new List({
-    item: req.body.item,
+  const item = {todos: [{
+    item: req.body.todos[0].item,
     completed: false
-  }, {collection: name});
+  }]};
+  const newItem = new List({
+    username: req.body.username,
+    todos: [{
+      item: req.body.todos[0].item,
+      completed: false
+    }]
+  });
 
-  List.addItem(newItem, (err, user) => {
-    if(err) {
-      res.json({success: false, msg: 'Failed to add item'});
+  List.getListByUsername(username, (err, user) => {
+    if(err) throw err;
+    if(!user) {
+      List.addNewItem(newItem, (err, user) => {
+        if(err) {
+          res.json({success: false, msg: 'Failed to add new item'});
+        } else {
+          res.json({success: true, msg: 'New item successfully added'});
+        }
+      })
     } else {
-      res.json({success: true, msg: 'New item successfully added'});
+      List.addItem(username, item, (err, todos) => {
+        if(err) {
+          res.json({success: false, msg: 'Failed to push new item'});
+        } else {
+          res.json({success: true, msg: 'New item successfully pushed'});
+        }
+      })
     }
-  })
+  });
+
 });
 
 //mark item completed
 router.post('/completed', (req, res, next) => {
-  const idNum = req.body._id;
+  const idNum = req.body.list[0]._id;
+  const userId = req.body.userId;
 
-  List.markItemCompleted(idNum, (err, todos) => {
+  List.markItemCompleted(idNum, userId, (err, todos) => {
     if(err) {
       res.json({success: false, msg: 'Failed to update the to do item'});
     } else {
@@ -52,9 +79,10 @@ router.post('/completed', (req, res, next) => {
 
 //mark item not completed
 router.post('/notcompleted', (req, res, next) => {
-  const idNum = req.body._id;
+  const idNum = req.body.list[0]._id;
+  const userId = req.body.userId;
 
-  List.markNotCompleted(idNum, (err, todos) => {
+  List.markNotCompleted(idNum, userId, (err, todos) => {
     if(err) {
       res.json({success: false, msg: 'Failed to update the to do item'});
     } else {
@@ -64,8 +92,10 @@ router.post('/notcompleted', (req, res, next) => {
 });
 
 //delete completed items
-router.delete('/delete', (req, res, next) => {
-  List.deleteCompleted((err, todos) => {
+router.post('/delete', (req, res, next) => {
+  const userId = req.body.userId;
+
+  List.deleteCompleted(userId, (err, todos) => {
     if(err) {
       res.json({success: false, msg: 'Failed to delete completed items'});
     } else {
