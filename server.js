@@ -14,7 +14,7 @@ const config = require('./config/database');
 const users = require('./routes/users');      //loads our custom user router module/middleware to our app
 const todoList = require('./routes/list');    //loads our custom list router module/middleware to our app
 
-const port = process.evn.PORT || 8080;        //local port configured for heroku
+const PORT = process.env.PORT || 3000;        //local port configured for heroku
 
 mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {
@@ -48,6 +48,6 @@ app.get('*', (req, res) => {
 })
 
 //allows the server to start and listen for connections on our designated port (start app with node server.js) ===========
-app.listen(port, () => {
-  console.log('Server started on port ' + port);
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
 });
