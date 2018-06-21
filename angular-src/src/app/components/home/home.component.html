@@ -1,3 +1,38 @@
-<p>
-  home works!
-</p>
+<div class="jumbotron text-center">
+
+  <h1 class="display-4"><img id="mean" src="/assets/images/meanstack.png" alt="MEAN"> To Do App</h1>
+
+  <p class="lead">Welcome to my custom MEAN to do application built from scratch!</p>
+
+  <hr class="my-4">
+
+  <p *ngIf="!authService.loggedIn()" class="my-4">Please log in or register to use the app.</p>
+  <p *ngIf="authService.loggedIn()" class="my-4">You are logged in. Click below to go to your dashboard.</p>
+
+  <p class="lead">
+    <a *ngIf="authService.loggedIn()" class="btn btn-primary" routerLink="/dashboard" role="button">Dashboard</a>
+    <a *ngIf="!authService.loggedIn()" class="btn btn-primary" routerLink="/register" role="button">Register</a>
+    <a *ngIf="!authService.loggedIn()" class="btn btn-primary" routerLink="/login" role="button">Login</a>
+  </p>
+
+  <small *ngIf="!authService.loggedIn()">NOTE: If you would like to test the app but do not wish to register, you may sign in as a guest.<br>
+    To do this, use guest as the username and password.</small>
+
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3>Node.js/Express Backend</h3>
+    <p>A backend server created with Node.js and Express which provided a solid foundation to use
+      Mongoose to organize models and communicate with the MongoDB database.</p>
+  </div>
+  <div class="col-md-4">
+    <h3>Angular and Angular-CLI</h3>
+    <p>Frontend application developed with Angular framework and designed with Bootstrap. Components,
+      services and more were generated using Angular-CLI.</p>
+  </div>
+  <div class="col-md-4">
+    <h3>JWT Tokens</h3>
+    <p>Login and store user data. A full featured authentication system using JSON web tokens.</p>
+  </div>
+</div>
