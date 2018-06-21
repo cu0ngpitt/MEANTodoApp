@@ -1,14 +1,20 @@
-<div *ngIf="user">
+<div class="profile" *ngIf="user">
 
-  <h1>{{user.firstName}} {{user.lastName}}</h1>
+  <h1>{{user.firstName | titlecase}} {{user.lastName | titlecase}}</h1>
 
   <ul class="list-group">
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      {{user.username}}
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      {{user.email}}
-    </li>
+    <div class="my-4">
+      <label class="col-form-label-lg">Username</label>
+      <li class="list-group-item d-flex justify-content-between align-items-center form-control-lg">
+        {{user.username}}
+      </li>
+    </div>
+    <div class="my-4">
+      <label class="col-form-label-lg">Email</label>
+      <li class="list-group-item d-flex justify-content-between align-items-center form-control-lg">
+        {{user.email}}
+      </li>
+    </div>
   </ul>
 
 </div>
