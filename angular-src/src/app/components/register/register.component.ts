@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   username: String;
   email: String;
   password: String;
+  passwordType: String = "password";
 
   constructor(
     private validateService: ValidateService,
@@ -37,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
     // Required Fields
     if(!this.validateService.validateRegistration(user)) {
-      this.flashMessage.show("Please complete the required fields", { cssClass: 'alert-danger', timeout: 20000 });
+      this.flashMessage.show("Please complete all fields", { cssClass: 'alert-danger', timeout: 3000 });
       return false;
     }
 
@@ -51,12 +52,23 @@ export class RegisterComponent implements OnInit {
     this.authService.registerUser(user).subscribe(data => {
       if(data.success) {
         this.flashMessage.show("Success! You have now been registered!", { cssClass: 'alert-success', timeout: 3000 });
-        this.router.navigate(['/login']);        
+        this.router.navigate(['/login']);
+      } else if(data.duplicate) {
+        this.flashMessage.show("Sorry, that username is taken. Please try another", { cssClass: 'alert-danger', timeout: 3000 });
+        this.router.navigate(['/register']);
       } else {
         this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
         this.router.navigate(['/register']);
       }
     })
+  }
+
+  showPassword() {
+    if(this.passwordType === "password") {
+        this.passwordType = "text";
+    } else {
+        this.passwordType = "password";
+    }
   }
 
 }
