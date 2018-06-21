@@ -11,6 +11,8 @@ import { Router } from  '@angular/router';
 export class LoginComponent implements OnInit {
   username: String;
   password: String;
+  passwordType: String = "password";
+
 
   constructor(
     private flashMessage: FlashMessagesService,
@@ -37,6 +39,14 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     })
+  }
+
+  showPassword() {
+    if(this.passwordType === "password") {
+        this.passwordType = "text";
+    } else {
+        this.passwordType = "password";
+    }
   }
 
 }
