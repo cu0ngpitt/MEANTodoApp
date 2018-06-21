@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
+//import { catchError } from 'rxjs/operators';
 
-import { List } from '../list';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,29 +11,27 @@ const httpOptions = {
 
 @Injectable()
 export class ListService {
-  newTodo: any;
-  list: any;
 
   constructor(private http: HttpClient) { }
 
-  getAllTodos() {
-    return this.http.get('http://localhost:3000/todos/lists');
+  getAllTodos(username) {
+    return this.http.post('/todos/lists', username, httpOptions);
   }
 
   addItem(newTodo) {
-    return this.http.post('http://localhost:3000/todos/add', newTodo, httpOptions);
+    return this.http.post('/todos/add', newTodo, httpOptions);
   }
 
-  markCompleted(list) {
-    return this.http.post('http://localhost:3000/todos/completed', list, httpOptions);
+  markCompleted(info) {
+    return this.http.post('/todos/completed', info, httpOptions);
   }
 
-  markNotCompleted(list) {
-    return this.http.post('http://localhost:3000/todos/notcompleted', list, httpOptions);
+  markNotCompleted(info) {
+    return this.http.post('/todos/notcompleted', info, httpOptions);
   }
 
-  deleteCompleted(list) {
-    return this.http.delete('http://localhost:3000/todos/delete', httpOptions);
+  deleteCompleted(info) {
+    return this.http.post('/todos/delete', info, httpOptions);
   }
 
 }
