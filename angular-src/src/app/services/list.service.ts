@@ -17,8 +17,8 @@ export class ListService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTodos() {
-    return this.http.get('http://localhost:3000/todos/lists');
+  getAllTodos(username) {
+    return this.http.post('http://localhost:3000/todos/lists', username, httpOptions);
   }
 
   addItem(newTodo) {
