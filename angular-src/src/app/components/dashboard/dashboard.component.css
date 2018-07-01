@@ -1,4 +1,4 @@
-.newList {    
+.newList {
     margin: 0 auto;
     padding: 0 30px;
   }
@@ -31,8 +31,7 @@ h1 {
 }
 
 .newItem {
-  padding-left: 20px;
-  width: 400px;
+  padding-left: 20px;  
   display: inline-block;
 }
 
