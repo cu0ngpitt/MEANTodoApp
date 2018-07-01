@@ -422,7 +422,7 @@ module.exports = "nav {\r\n  margin-bottom: 50px;\r\n}\r\n"
 /***/ "./src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">\n  <a class=\"navbar-brand\" [routerLink]=\"['/']\">MEAN To Do App</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n        <a class=\"nav-link\" [routerLink]=\"['/dashboard']\" class=\"btn btn-primary\" routerLinkActive=\"active\">Dashboard</a>\n      </li>\n    </ul>\n\n    <ul class=\"navbar-nav ml-auto\">\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n        <a class=\"nav-link\" [routerLink]=\"['/profile']\" class=\"btn btn-primary\" routerLinkActive=\"active\">Profile</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\">\n        <a class=\"nav-link\" [routerLink]=\"['/login']\" class=\"btn btn-primary\" routerLinkActive=\"active\">Login</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n        <a class=\"nav-link\" href=# class=\"btn btn-primary\" (click)=\"onLogoutClick()\" routerLinkActive=\"active\">Logout</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\">\n        <a class=\"nav-link\" [routerLink]=\"['/register']\" class=\"btn btn-primary\" routerLinkActive=\"active\">Register</a>\n      </li>\n    </ul>\n\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">\n  <a class=\"navbar-brand\" [routerLink]=\"['/']\">MEAN To Do App</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n        <a class=\"nav-link\" [routerLink]=\"['/dashboard']\" class=\"btn btn-primary\" routerLinkActive=\"active\">Dashboard</a>\n      </li>\n    </ul>\n  </div>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">\n    <ul class=\"navbar-nav ml-auto\">\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n        <a class=\"nav-link\" [routerLink]=\"['/profile']\" class=\"btn btn-primary\" routerLinkActive=\"active\">Profile</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\">\n        <a class=\"nav-link\" [routerLink]=\"['/login']\" class=\"btn btn-primary\" routerLinkActive=\"active\">Login</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\n        <a class=\"nav-link\" href=# class=\"btn btn-primary\" (click)=\"onLogoutClick()\" routerLinkActive=\"active\">Logout</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\">\n        <a class=\"nav-link\" [routerLink]=\"['/register']\" class=\"btn btn-primary\" routerLinkActive=\"active\">Register</a>\n      </li>\n    </ul>\n\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -730,13 +730,13 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('/users/register', user, { headers: headers })
+        return this.http.post('http://localhost:3000/users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('/users/authenticate', user, { headers: headers })
+        return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
@@ -744,7 +744,7 @@ var AuthService = /** @class */ (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get('/users/profile', { headers: headers })
+        return this.http.get('http://localhost:3000/users/profile', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
@@ -784,6 +784,7 @@ var AuthService = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/map.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -795,7 +796,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-//import { catchError } from 'rxjs/operators';
+
 var httpOptions = {
     headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'Content-Type': 'application/json' })
 };
@@ -804,19 +805,19 @@ var ListService = /** @class */ (function () {
         this.http = http;
     }
     ListService.prototype.getAllTodos = function (username) {
-        return this.http.post('/todos/lists', username, httpOptions);
+        return this.http.post('http://localhost:3000/todos/lists', username, httpOptions);
     };
     ListService.prototype.addItem = function (newTodo) {
-        return this.http.post('/todos/add', newTodo, httpOptions);
+        return this.http.post('http://localhost:3000/todos/add', newTodo, httpOptions);
     };
-    ListService.prototype.markCompleted = function (info) {
-        return this.http.post('/todos/completed', info, httpOptions);
+    ListService.prototype.markCompleted = function (list) {
+        return this.http.post('http://localhost:3000/todos/completed', list, httpOptions);
     };
-    ListService.prototype.markNotCompleted = function (info) {
-        return this.http.post('/todos/notcompleted', info, httpOptions);
+    ListService.prototype.markNotCompleted = function (list) {
+        return this.http.post('http://localhost:3000/todos/notcompleted', list, httpOptions);
     };
-    ListService.prototype.deleteCompleted = function (info) {
-        return this.http.post('/todos/delete', info, httpOptions);
+    ListService.prototype.deleteCompleted = function (list) {
+        return this.http.delete('http://localhost:3000/todos/delete', httpOptions);
     };
     ListService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
