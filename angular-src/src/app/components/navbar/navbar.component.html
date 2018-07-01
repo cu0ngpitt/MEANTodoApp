@@ -10,7 +10,9 @@
         <a class="nav-link" [routerLink]="['/dashboard']" class="btn btn-primary" routerLinkActive="active">Dashboard</a>
       </li>
     </ul>
+  </div>
 
+  <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" *ngIf="authService.loggedIn()">
         <a class="nav-link" [routerLink]="['/profile']" class="btn btn-primary" routerLinkActive="active">Profile</a>
