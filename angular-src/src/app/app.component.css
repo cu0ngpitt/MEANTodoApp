@@ -1,0 +1,5 @@
+:host /deep/ body {
+  max-width: 900px;
+  min-width: 370px;
+  margin: 0 auto;
+}
