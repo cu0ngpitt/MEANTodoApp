@@ -33,8 +33,8 @@ export class ListService {
     return this.http.post('http://localhost:3000/todos/notcompleted', list, httpOptions);
   }
 
-  deleteCompleted(list) {
-    return this.http.delete('http://localhost:3000/todos/delete', httpOptions);
+  deleteCompleted(info) {
+    return this.http.post('http://localhost:3000/todos/delete', info, httpOptions);
   }
 
 }
