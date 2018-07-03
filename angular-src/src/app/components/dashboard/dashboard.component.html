@@ -19,18 +19,16 @@
           <td class="todo">
             <p>{{list.item}}</p>
           </td>
+          <td>
+            <button id="delOneButton" class="btn btn-primary" (click)="delOne(list)">Delete</button>
+          </td>
         </tr>
       </li>
     </ul>
   </div>
 
   <div class="delete blockquote">
-    <p class="mb-0">To delete an item:</p>
-      <ol>
-        <li>First mark the item as completed</li>
-        <li>Then click the Delete button below</li>
-      </ol>
-    <button id="delButton" class="btn btn-primary btn-lg" (click)="delList(list)">Delete</button>
+    <button id="delButton" class="btn btn-primary btn-lg" (click)="delList(list)">Delete Selected</button>
   </div>
 
 </section>
