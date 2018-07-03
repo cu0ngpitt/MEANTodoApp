@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ":host /deep/ body {\r\n  max-width: 900px;\r\n  min-width: 370px;\r\n  margin: 0 auto;\r\n}\r\n"
 
 /***/ }),
 
@@ -154,14 +154,14 @@ var AppModule = /** @class */ (function () {
 /***/ "./src/app/components/dashboard/dashboard.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".username {\r\n\r\n}\r\n\r\n.newList {\r\n    min-width: 550px;\r\n    width: 600px;\r\n    margin: 0 auto;\r\n    padding: 0 30px;\r\n  }\r\n\r\n.lists {\r\n  min-height: 300px;\r\n}\r\n\r\n.todo {\r\n  padding: 12px 0 0 10px;\r\n  color: black;\r\n}\r\n\r\n.list-lines {\r\n  height: 30px;\r\n}\r\n\r\n#dispList {\r\n  list-style-type: none;\r\n}\r\n\r\n.completed {\r\n    text-decoration: line-through;\r\n    color: red;\r\n  }\r\n\r\nh1 {\r\n  text-align: center;\r\n  padding-bottom: 50px;\r\n}\r\n\r\n.newItem {\r\n  padding-left: 20px;\r\n  width: 400px;\r\n  display: inline-block;\r\n}\r\n\r\n.delete {\r\n  padding-top: 20px;\r\n  padding-left: 60px;\r\n  border-top: 1px solid #bfbfbf;\r\n}\r\n\r\n.add{\r\n  text-align: center;\r\n  border-bottom: 1px solid #bfbfbf;\r\n  padding-bottom: 20px;\r\n}\r\n\r\n#addListButton {\r\n  margin-bottom: 9px;\r\n}\r\n"
+module.exports = ".newList {\r\n    margin: 0 auto;\r\n    padding: 0 30px;\r\n  }\r\n\r\n.lists {\r\n  min-height: 300px;\r\n}\r\n\r\n.todo {\r\n  padding: 12px 0 0 10px;\r\n  color: black;\r\n}\r\n\r\n.list-lines {\r\n  height: 30px;\r\n}\r\n\r\n#dispList {\r\n  list-style-type: none;\r\n}\r\n\r\n.completed {\r\n    text-decoration: line-through;\r\n    color: red;\r\n  }\r\n\r\nh1 {\r\n  text-align: center;\r\n  padding-bottom: 50px;\r\n}\r\n\r\n.newItem {\r\n  padding-left: 20px;\r\n  margin: 10px 0;\r\n  max-width: 400px;\r\n  display: inline-block;\r\n}\r\n\r\n.delete {\r\n  padding-top: 20px;\r\n  padding-left: 60px;\r\n  border-top: 1px solid #bfbfbf;\r\n}\r\n\r\n.add{\r\n  text-align: center;\r\n  border-bottom: 1px solid #bfbfbf;\r\n  padding-bottom: 20px;\r\n}\r\n\r\n#addListButton {\r\n  margin-bottom: 9px;\r\n}\r\n"
 
 /***/ }),
 
 /***/ "./src/app/components/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"newList\" *ngIf=\"user\">\n  <h1>{{user.firstName | titlecase}} {{user.lastName | titlecase}}'s To Do List</h1>\n\n  <div class=\"add\">\n    <input class=\"newItem form-control form-control-lg\" #newListInput type=\"text\" [(ngModel)]=\"input\"\n      placeholder=\"Enter new items here\" (keyup.enter)=\"addList(newListInput.value); newListInput.value=''\">\n    <!-- (click) passes input value to addList() and then clears the input -->\n    <button id=\"addListButton\" class=\"btn btn-primary btn-lg\" (click)=\"addList(newListInput.value); newListInput.value=''\">Add</button>\n  </div>\n\n  <div class=\"lists blockquote\">\n    <ul class=\"mb-0\" id=\"dispList\">\n      <li *ngFor=\"let list of lists\" [class.completed]=\"list.completed\" class=\"list-lines\">\n        <tr>\n          <td class=\"check\">\n            <input id='checked' *ngIf=\"list.completed === false\" type=\"checkbox\" (click)='isChecked(list)'>\n            <input id='checked' *ngIf=\"list.completed === true\" type=\"checkbox\" (click)='isChecked(list)' checked>\n          </td>\n          <td class=\"todo\">\n            <p>{{list.item}}</p>\n          </td>\n        </tr>\n      </li>\n    </ul>\n  </div>\n\n  <div class=\"delete blockquote\">\n    <p class=\"mb-0\">To delete an item:</p>\n      <ol>\n        <li>First mark the item as completed</li>\n        <li>Then click the Delete button below</li>\n      </ol>\n    <button id=\"delButton\" class=\"btn btn-primary btn-lg\" (click)=\"delList(list)\">Delete</button>\n  </div>\n\n</section>\n"
+module.exports = "<section class=\"newList\" *ngIf=\"user\">\r\n  <h1>{{user.firstName | titlecase}} {{user.lastName | titlecase}}'s To Do List</h1>\r\n\r\n  <div class=\"add\">\r\n    <input class=\"newItem form-control form-control-lg\" #newListInput type=\"text\" [(ngModel)]=\"input\"\r\n      placeholder=\"Enter new items here\" (keyup.enter)=\"addList(newListInput.value); newListInput.value=''\">\r\n    <!-- (click) passes input value to addList() and then clears the input -->\r\n    <button id=\"addListButton\" class=\"btn btn-primary btn-lg\" (click)=\"addList(newListInput.value); newListInput.value=''\">Add</button>\r\n  </div>\r\n\r\n  <div class=\"lists blockquote\">\r\n    <ul class=\"mb-0\" id=\"dispList\">\r\n      <li *ngFor=\"let list of lists\" [class.completed]=\"list.completed\" class=\"list-lines\">\r\n        <tr>\r\n          <td class=\"check\">\r\n            <input id='checked' *ngIf=\"list.completed === false\" type=\"checkbox\" (click)='isChecked(list)'>\r\n            <input id='checked' *ngIf=\"list.completed === true\" type=\"checkbox\" (click)='isChecked(list)' checked>\r\n          </td>\r\n          <td class=\"todo\">\r\n            <p>{{list.item}}</p>\r\n          </td>\r\n        </tr>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"delete blockquote\">\r\n    <p class=\"mb-0\">To delete an item:</p>\r\n      <ol>\r\n        <li>First mark the item as completed</li>\r\n        <li>Then click the Delete button below</li>\r\n      </ol>\r\n    <button id=\"delButton\" class=\"btn btn-primary btn-lg\" (click)=\"delList(list)\">Delete</button>\r\n  </div>\r\n\r\n</section>\r\n"
 
 /***/ }),
 
@@ -483,7 +483,7 @@ var NavbarComponent = /** @class */ (function () {
 /***/ "./src/app/components/profile/profile.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "h1 {\r\n  text-align: center;\r\n}\r\n\r\n.profile {\r\n  width: 800px;  \r\n  margin: 0 auto;\r\n}\r\n"
+module.exports = "h1 {\r\n  text-align: center;\r\n}\r\n\r\n.profile {\r\n  max-width: 800px;\r\n  margin: 0 auto;\r\n}\r\n"
 
 /***/ }),
 
