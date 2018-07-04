@@ -96,7 +96,6 @@ router.post('/deleteone', (req, res, next) => {
   const idNum = req.body.list[0]._id;
   const userId = req.body.userId;
 
-  console.log(idNum, userId);
   List.deleteOne(idNum, userId, (err, todos) => {
     if(err) {
       res.json({success: false, msg: 'Failed to delete the single item'});
