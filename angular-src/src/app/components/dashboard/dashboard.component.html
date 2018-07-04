@@ -1,36 +1,40 @@
 <section class="newList" *ngIf="user">
   <h1>{{user.firstName | titlecase}} {{user.lastName | titlecase}}'s To Do List</h1>
 
-  <div class="form-group add">
+  <div class="add">
     <input class="newItem form-control form-control-lg" #newListInput type="text" [(ngModel)]="input"
       placeholder="Enter new items here" (keyup.enter)="addList(newListInput.value); newListInput.value=''">
     <!-- (click) passes input value to addList() and then clears the input -->
     <button id="addListButton" class="btn btn-primary btn-lg" (click)="addList(newListInput.value); newListInput.value=''">Add</button>
   </div>
 
+  <hr class="my-4">
+
   <div class="lists blockquote">
     <ul class="mb-0" id="dispList">
       <li *ngFor="let list of lists" [class.completed]="list.completed" class="list-lines">
-        <tr>
-          <td class="check">
-            <input id='checked' *ngIf="list.completed === false" type="checkbox" (click)='isChecked(list)'>
-            <input id='checked' *ngIf="list.completed === true" type="checkbox" (click)='isChecked(list)' checked>
-          </td>
-          <td class="todo">
-            <p>{{list.item}}</p>
-          </td>
-        </tr>
+        <table>
+          <tr>
+            <td class="check">
+              <input id='checked' *ngIf="list.completed === false" type="checkbox" (click)='isChecked(list)'>
+              <input id='checked' *ngIf="list.completed === true" type="checkbox" (click)='isChecked(list)' checked>
+            </td>
+            <td class="todoBox">
+              <span class="todo" (click)="isChecked(list)">{{list.item}}</span>
+            </td>
+            <td>
+              <button id="delOneButton" class="btn btn-danger" (click)="delOne(list)" [hidden]="!list.completed">Delete</button>
+            </td>
+          </tr>
+        </table>
       </li>
     </ul>
   </div>
 
+  <hr class="my-4">
+
   <div class="delete blockquote">
-    <p class="mb-0">To delete an item:</p>
-      <ol>
-        <li>First mark the item as completed</li>
-        <li>Then click the Delete button below</li>
-      </ol>
-    <button id="delButton" class="btn btn-primary btn-lg" (click)="delList(list)">Delete</button>
+    <button id="delButton" class="btn btn-primary btn-lg" (click)="delList()">Delete Selected</button>
   </div>
 
 </section>
