@@ -8,27 +8,33 @@
     <button id="addListButton" class="btn btn-primary btn-lg" (click)="addList(newListInput.value); newListInput.value=''">Add</button>
   </div>
 
+  <hr class="my-4">
+
   <div class="lists blockquote">
     <ul class="mb-0" id="dispList">
       <li *ngFor="let list of lists" [class.completed]="list.completed" class="list-lines">
-        <tr>
-          <td class="check">
-            <input id='checked' *ngIf="list.completed === false" type="checkbox" (click)='isChecked(list)'>
-            <input id='checked' *ngIf="list.completed === true" type="checkbox" (click)='isChecked(list)' checked>
-          </td>
-          <td class="todo">
-            <p>{{list.item}}</p>
-          </td>
-          <td>
-            <button id="delOneButton" class="btn btn-primary" (click)="delOne(list)">Delete</button>
-          </td>
-        </tr>
+        <table>
+          <tr>
+            <td class="check">
+              <input id='checked' *ngIf="list.completed === false" type="checkbox" (click)='isChecked(list)'>
+              <input id='checked' *ngIf="list.completed === true" type="checkbox" (click)='isChecked(list)' checked>
+            </td>
+            <td class="todoBox">
+              <span class="todo" (click)="isChecked(list)">{{list.item}}</span>
+            </td>
+            <td>
+              <button id="delOneButton" class="btn btn-danger" (click)="delOne(list)" [hidden]="!list.completed">Delete</button>
+            </td>
+          </tr>
+        </table>
       </li>
     </ul>
   </div>
 
+  <hr class="my-4">
+
   <div class="delete blockquote">
-    <button id="delButton" class="btn btn-primary btn-lg" (click)="delList(list)">Delete Selected</button>
+    <button id="delButton" class="btn btn-primary btn-lg" (click)="delList()">Delete Selected</button>
   </div>
 
 </section>
