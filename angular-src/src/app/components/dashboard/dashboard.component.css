@@ -34,6 +34,7 @@
   text-decoration: -webkit-line-through;
   -webkit-text-decoration: -webkit-line-through;
   -webkit-text-decoration: line-through;
+  -webkit-text-decoration-skip: none;
 
   text-decoration: -webkit line-through;
   -webkit text-decoration: line-through;
