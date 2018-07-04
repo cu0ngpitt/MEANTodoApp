@@ -91,7 +91,21 @@ router.post('/notcompleted', (req, res, next) => {
   });
 });
 
-//delete completed items
+//delete one completed item
+router.post('/deleteone', (req, res, next) => {
+  const idNum = req.body.list[0]._id;
+  const userId = req.body.userId;
+
+  List.deleteOne(idNum, userId, (err, todos) => {
+    if(err) {
+      res.json({success: false, msg: 'Failed to delete the single item'});
+    } else {
+      res.json({success: true, msg: 'The single item was successfully deleted'});
+    }
+  });
+});
+
+//delete completed items that are selected
 router.post('/delete', (req, res, next) => {
   const userId = req.body.userId;
 
