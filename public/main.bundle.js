@@ -154,14 +154,14 @@ var AppModule = /** @class */ (function () {
 /***/ "./src/app/components/dashboard/dashboard.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".newList {\r\n    margin: 0 auto;\r\n    padding: 0 30px;\r\n  }\r\n\r\n.lists {\r\n  min-height: 300px;\r\n}\r\n\r\n.todo {\r\n  padding: 12px 0 0 10px;\r\n  color: black;\r\n}\r\n\r\n.list-lines {\r\n  height: 30px;\r\n}\r\n\r\n#dispList {\r\n  list-style-type: none;\r\n}\r\n\r\n.completed {\r\n    text-decoration: line-through;\r\n    color: red;\r\n  }\r\n\r\nh1 {\r\n  text-align: center;\r\n  padding-bottom: 50px;\r\n}\r\n\r\n.newItem {\r\n  padding-left: 20px;\r\n  margin: 10px 0;\r\n  max-width: 400px;\r\n  display: inline-block;\r\n}\r\n\r\n.delete {\r\n  padding-top: 20px;\r\n  padding-left: 60px;\r\n  border-top: 1px solid #bfbfbf;\r\n}\r\n\r\n.add{\r\n  text-align: center;\r\n  border-bottom: 1px solid #bfbfbf;\r\n  padding-bottom: 20px;\r\n}\r\n\r\n#addListButton {\r\n  margin-bottom: 9px;\r\n}\r\n"
+module.exports = ".newList {\r\n    margin: 0 auto;\r\n    padding: 0 30px;\r\n    max-width: 700px;\r\n  }\r\n\r\n.lists {\r\n  min-height: 300px;\r\n}\r\n\r\n.todo {\r\n  color: black;\r\n  text-align: left;\r\n  cursor: pointer;\r\n}\r\n\r\n.list-lines {\r\n  min-height: 30px;\r\n  min-width: 250px;\r\n}\r\n\r\n#delOneButton {\r\n  padding: 0 5px;\r\n  float: right;\r\n}\r\n\r\n#dispList {\r\n  list-style-type: none;\r\n  padding: 0 10px;\r\n}\r\n\r\n.completed {\r\n    text-decoration: line-through;\r\n    color: red;\r\n  }\r\n\r\nh1 {\r\n  text-align: center;\r\n  padding-bottom: 50px;\r\n}\r\n\r\n.newItem {\r\n  padding-left: 20px;\r\n  margin: 10px 0;\r\n  max-width: 400px;\r\n  display: inline-block;\r\n}\r\n\r\n.add, .delete {\r\n  text-align: center;\r\n}\r\n\r\ntd {\r\n  width: 100%;\r\n}\r\n\r\nli:nth-child(even) {\r\n  background-color: #d1f2ff;\r\n}\r\n\r\n.check {\r\n  width: 20px;\r\n}\r\n\r\n#checked {\r\n  cursor: pointer;\r\n}\r\n"
 
 /***/ }),
 
 /***/ "./src/app/components/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"newList\" *ngIf=\"user\">\r\n  <h1>{{user.firstName | titlecase}} {{user.lastName | titlecase}}'s To Do List</h1>\r\n\r\n  <div class=\"add\">\r\n    <input class=\"newItem form-control form-control-lg\" #newListInput type=\"text\" [(ngModel)]=\"input\"\r\n      placeholder=\"Enter new items here\" (keyup.enter)=\"addList(newListInput.value); newListInput.value=''\">\r\n    <!-- (click) passes input value to addList() and then clears the input -->\r\n    <button id=\"addListButton\" class=\"btn btn-primary btn-lg\" (click)=\"addList(newListInput.value); newListInput.value=''\">Add</button>\r\n  </div>\r\n\r\n  <div class=\"lists blockquote\">\r\n    <ul class=\"mb-0\" id=\"dispList\">\r\n      <li *ngFor=\"let list of lists\" [class.completed]=\"list.completed\" class=\"list-lines\">\r\n        <tr>\r\n          <td class=\"check\">\r\n            <input id='checked' *ngIf=\"list.completed === false\" type=\"checkbox\" (click)='isChecked(list)'>\r\n            <input id='checked' *ngIf=\"list.completed === true\" type=\"checkbox\" (click)='isChecked(list)' checked>\r\n          </td>\r\n          <td class=\"todo\">\r\n            <p>{{list.item}}</p>\r\n          </td>\r\n        </tr>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <div class=\"delete blockquote\">\r\n    <p class=\"mb-0\">To delete an item:</p>\r\n      <ol>\r\n        <li>First mark the item as completed</li>\r\n        <li>Then click the Delete button below</li>\r\n      </ol>\r\n    <button id=\"delButton\" class=\"btn btn-primary btn-lg\" (click)=\"delList(list)\">Delete</button>\r\n  </div>\r\n\r\n</section>\r\n"
+module.exports = "<section class=\"newList\" *ngIf=\"user\">\r\n  <h1>{{user.firstName | titlecase}} {{user.lastName | titlecase}}'s To Do List</h1>\r\n\r\n  <div class=\"add\">\r\n    <input class=\"newItem form-control form-control-lg\" #newListInput type=\"text\" [(ngModel)]=\"input\"\r\n      placeholder=\"Enter new items here\" (keyup.enter)=\"addList(newListInput.value); newListInput.value=''\">\r\n    <!-- (click) passes input value to addList() and then clears the input -->\r\n    <button id=\"addListButton\" class=\"btn btn-primary btn-lg\" (click)=\"addList(newListInput.value); newListInput.value=''\">Add</button>\r\n  </div>\r\n\r\n  <hr class=\"my-4\">\r\n\r\n  <div class=\"lists blockquote\">\r\n    <ul class=\"mb-0\" id=\"dispList\">\r\n      <li *ngFor=\"let list of lists\" [class.completed]=\"list.completed\" class=\"list-lines\">\r\n        <table>\r\n          <tr>\r\n            <td class=\"check\">\r\n              <input id='checked' *ngIf=\"list.completed === false\" type=\"checkbox\" (click)='isChecked(list)'>\r\n              <input id='checked' *ngIf=\"list.completed === true\" type=\"checkbox\" (click)='isChecked(list)' checked>\r\n            </td>\r\n            <td class=\"todoBox\">\r\n              <span class=\"todo\" (click)=\"isChecked(list)\">{{list.item}}</span>\r\n            </td>\r\n            <td>\r\n              <button id=\"delOneButton\" class=\"btn btn-danger\" (click)=\"delOne(list)\" [hidden]=\"!list.completed\">Delete</button>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n\r\n  <hr class=\"my-4\">\r\n\r\n  <div class=\"delete blockquote\">\r\n    <button id=\"delButton\" class=\"btn btn-primary btn-lg\" (click)=\"delList()\">Delete Selected</button>\r\n  </div>\r\n\r\n</section>\r\n"
 
 /***/ }),
 
@@ -244,6 +244,14 @@ var DashboardComponent = /** @class */ (function () {
                 _this.getLists();
             });
         }
+    };
+    DashboardComponent.prototype.delOne = function (list) {
+        var _this = this;
+        var info = { userId: this.userId, list: [list] };
+        this.listService.deleteOne(info).subscribe(function (data) {
+            _this.lists = data.todos;
+            _this.getLists();
+        });
     };
     DashboardComponent.prototype.delList = function () {
         var _this = this;
@@ -814,6 +822,9 @@ var ListService = /** @class */ (function () {
     };
     ListService.prototype.markNotCompleted = function (info) {
         return this.http.post('/todos/notcompleted', info, httpOptions);
+    };
+    ListService.prototype.deleteOne = function (info) {
+        return this.http.post('/todos/deleteone', info, httpOptions);
     };
     ListService.prototype.deleteCompleted = function (info) {
         return this.http.post('/todos/delete', info, httpOptions);
