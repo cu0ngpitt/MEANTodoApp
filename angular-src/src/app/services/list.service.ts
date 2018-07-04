@@ -30,6 +30,10 @@ export class ListService {
     return this.http.post('/todos/notcompleted', info, httpOptions);
   }
 
+  deleteOne(info) {
+    return this.http.post('/todos/deleteone', info, httpOptions);
+  }
+
   deleteCompleted(info) {
     return this.http.post('/todos/delete', info, httpOptions);
   }
