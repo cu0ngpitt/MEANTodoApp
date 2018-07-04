@@ -45,6 +45,11 @@ module.exports.markNotCompleted = function(id, userId, callback) {
   Item.findOneAndUpdate(query, { $set: { "todos.$.completed": false }}, callback);
 }
 
+module.exports.deleteOne = function(id, userId, callback) {
+  const query = { "_id": userId };
+  Item.findOneAndUpdate(query, { $pull: { todos: {  _id: id }}}, { multi: true }, callback);
+}
+
 module.exports.deleteCompleted = function(userId, callback) {
   const query = { "_id": userId };
   Item.findOneAndUpdate(query, { $pull: { todos: { completed: true }}}, { multi: true }, callback);
