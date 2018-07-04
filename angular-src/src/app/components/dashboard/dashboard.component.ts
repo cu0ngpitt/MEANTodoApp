@@ -79,6 +79,14 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  delOne(list) {
+    const info = {userId: this.userId, list: [list]}
+    this.listService.deleteOne(info).subscribe((data: any) => {
+      this.lists = data.todos;
+      this.getLists();
+    });
+    }
+
   delList() {
     const info = {userId: this.userId, list: [this.lists]}
     this.listService.deleteCompleted(info).subscribe((data: any) => {
