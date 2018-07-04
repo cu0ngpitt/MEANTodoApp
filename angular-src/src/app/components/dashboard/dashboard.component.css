@@ -1,6 +1,7 @@
 .newList {
     margin: 0 auto;
     padding: 0 30px;
+    max-width: 700px;
   }
 
 .lists {
@@ -8,16 +9,24 @@
 }
 
 .todo {
-  padding: 12px 0 0 10px;
   color: black;
+  text-align: left;
+  cursor: pointer;
 }
 
 .list-lines {
-  height: 30px;
+  min-height: 30px;
+  min-width: 250px;
+}
+
+#delOneButton {
+  padding: 0 5px;
+  float: right;
 }
 
 #dispList {
   list-style-type: none;
+  padding: 0 10px;
 }
 
 .completed {
@@ -37,18 +46,22 @@ h1 {
   display: inline-block;
 }
 
-.delete {
-  padding-top: 20px;
-  padding-left: 60px;
-  border-top: 1px solid #bfbfbf;
-}
-
-.add{
+.add, .delete {
   text-align: center;
-  border-bottom: 1px solid #bfbfbf;
-  padding-bottom: 20px;
 }
 
-#addListButton {
-  margin-bottom: 9px;
+td {
+  width: 100%;
+}
+
+li:nth-child(even) {
+  background-color: #d1f2ff;
+}
+
+.check {
+  width: 20px;
+}
+
+#checked {
+  cursor: pointer;
 }
