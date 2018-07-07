@@ -31,7 +31,7 @@
 
 .completed {
   text-decoration: line-through;
-  -webkit-text-decoration-line: line-through;
+  text-decoration-line: line-through;
   color: red;
 }
 
