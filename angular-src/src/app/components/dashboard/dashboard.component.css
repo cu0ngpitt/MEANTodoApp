@@ -66,8 +66,3 @@ li:nth-child(even) {
   color: red;
   -webkit-text-decoration-line: line-through;
 }
-
- safari: ` _::-webkit-full-page-media, _:future, :root .completed {
-   color: red;
-   -webkit-text-decoration-line: line-through;
- }

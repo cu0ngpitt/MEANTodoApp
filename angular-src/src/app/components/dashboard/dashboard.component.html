@@ -1,8 +1,7 @@
 <section class="newList" *ngIf="user">
   <h1>{{user.firstName | titlecase}} {{user.lastName | titlecase}}'s To Do List</h1>
 
-  <div class="add">
-    <p class="test">testing 3</p>
+  <div class="add">    
     <input class="newItem form-control form-control-lg" #newListInput type="text" [(ngModel)]="input"
       placeholder="Enter new items here" (keyup.enter)="addList(newListInput.value); newListInput.value=''">
     <!-- (click) passes input value to addList() and then clears the input -->
