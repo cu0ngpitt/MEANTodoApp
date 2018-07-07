@@ -67,7 +67,7 @@ li:nth-child(even) {
   -webkit-text-decoration-line: line-through;
 }
 
-.testing {
+_::-webkit-full-page-media, _:future, :root .completed {
   color: red;
   -webkit-text-decoration-line: line-through;
 }
