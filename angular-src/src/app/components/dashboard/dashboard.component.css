@@ -61,15 +61,13 @@ li:nth-child(even) {
   cursor: pointer;
 }
 
-
-.completed {
+.completed: todo {
   text-decoration: line-through;
   color: red;
   -webkit-text-decoration-line: line-through;
 }
 
-.test {
-  text-decoration: line-through;
+.todo {  
   color: red;
   -webkit-text-decoration-line: line-through;
 }

@@ -21,7 +21,7 @@
               <input id='checked' *ngIf="list.completed === true" type="checkbox" (click)='isChecked(list)' checked>
             </td>
             <td class="todoBox">
-              <span class="todo" (click)="isChecked(list)">{{list.item}}</span>
+              <span [class.completed]="list.complete" class="todo" (click)="isChecked(list)">{{list.item}}</span>
             </td>
             <td>
               <button id="delOneButton" class="btn btn-danger" (click)="delOne(list)" [hidden]="!list.completed">Delete</button>
