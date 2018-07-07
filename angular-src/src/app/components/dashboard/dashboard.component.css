@@ -31,8 +31,8 @@
 
 .completed {
   text-decoration: line-through;
-  text-decoration-line: line-through;
   color: red;
+  -webkit-text-decoration-line: line-through;
 }
 
 h1 {
@@ -65,4 +65,10 @@ li:nth-child(even) {
 
 #checked {
   cursor: pointer;
+}
+
+.test {
+  text-decoration: line-through;
+  color: red;
+  -webkit-text-decoration-line: line-through;
 }
