@@ -67,7 +67,7 @@ li:nth-child(even) {
   -webkit-text-decoration-line: line-through;
 }
 
-.todo {  
-  color: red;
+.todo {
+  color: black;
   -webkit-text-decoration-line: line-through;
 }
