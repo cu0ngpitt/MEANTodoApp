@@ -29,11 +29,6 @@
   padding: 0 10px;
 }
 
-.completed {
-    text-decoration: line-through;
-    color: red;
-  }
-
 h1 {
   text-align: center;
   padding-bottom: 50px;
@@ -64,4 +59,11 @@ li:nth-child(even) {
 
 #checked {
   cursor: pointer;
+}
+
+.completed .todoBox .todo {
+  text-decoration-line: line-through;
+  -webkit-text-decoration-line: line-through;
+  text-decoration-color: red;
+  -webkit-text-decoration-color: red;
 }
