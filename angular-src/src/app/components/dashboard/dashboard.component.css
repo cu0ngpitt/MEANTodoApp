@@ -64,5 +64,10 @@ li:nth-child(even) {
 .completed {
   text-decoration: line-through;
   color: red;
+}
+
+
+.completed .todoBox .todo {
   -webkit-text-decoration-line: line-through;
+  color: red;
 }
